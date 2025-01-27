@@ -20,7 +20,7 @@ def capture_images(name, user_id, nimgs=300):
     cap=cv2.VideoCapture(0) #default camera
     count=0
 
-    while count<=nimgs:
+    while count<nimgs:
         _, frame=cap.read()  
         cv2.putText(frame, f'Images Captured: {count}/{nimgs}', (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 20), 2, cv2.LINE_AA) 
         cv2.imshow(f'Capturing images for {name} (press to quit)', frame)
@@ -66,4 +66,4 @@ if __name__=='__main__':
     user_id=input('Enter Employee ID:')
 
     user_images_path=capture_images(name, user_id)
-    
+    split_dataset(user_images_path)

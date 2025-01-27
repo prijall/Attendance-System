@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import subprocess
+import sys, os
 
 from data_collection import capture_images, split_dataset  # Import your functions from data_collection.py
 
@@ -28,8 +29,24 @@ def home():
 @app.route("/start_attendance", methods=["POST"])
 def start_attendance():
     try:
-        # Invoke the prediction.py script
-        subprocess.Popen(["python", "prediction.py"])
+        # Ensure the correct Python interpreter is used
+        python_executable = sys.executable  # Gets the current Python executable
+        
+        # Build the absolute path to the prediction.py script
+        script_path = os.path.abspath("prediction.py")
+        
+        # Invoke the prediction.py script using subprocess
+        process = subprocess.Popen(
+            [python_executable, script_path],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+        
+        # Optional: Log or print the process output for debugging
+        stdout, stderr = process.communicate()
+        if process.returncode != 0:
+            return f"Error starting attendance system: {stderr.decode()}", 500
+
         return "Attendance system started. Please check the window displaying real-time recognition."
     except Exception as e:
         return f"Failed to start attendance: {str(e)}", 500

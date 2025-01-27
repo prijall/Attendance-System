@@ -1,22 +1,89 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Data Collection</title>
-    </head>
-    <body>
+<head>
+    <title>Data Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-size: 14px;
+            color: #555;
+            text-align: left;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .attbutton{
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #701a8a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
         <h3>Please Register Yourself!!</h3>
         <form action="/" method="POST">
-            <label>Name:</label>
-            <input type="text" name="name" placeholder="Enter your name" required>
-            <br/><br/>
-            <label>ID:</label>
-            <input type="number" name="user_id" placeholder="Enter your roll no" required>
-            <br/><br/>
-            <button type="submit">Register</button>      
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            
+            <label for="user_id">ID:</label>
+            <input type="number" id="user_id" name="user_id" placeholder="Enter your roll no" required>
+            
+            <button type="submit">Register</button>
         </form>
-<br> <br/><br/>
+        <br><br>
         <form action="/start_attendance" method="POST">
-        <button type="submit">Start Taking Attendance</button>
-    </form>
-    </body>
+            <button type="submit" class="attbutton">Start Taking Attendance</button>
+        </form>
+    </div>
+</body>
 </html>
